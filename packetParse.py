@@ -2,6 +2,7 @@ import dpkt
 import sys
 import pandas as pd
 import matplotlib.pyplot as plt
+import socket
 
 #CorbettinClass.pcap
 
@@ -19,7 +20,7 @@ timecount = 0
 first = True
 time0 = 0
 startime = 0
-window = 5
+window = 1
 
 for timestamp, buf in pcap:
     #gets initial time stamp
@@ -38,6 +39,10 @@ for timestamp, buf in pcap:
         #find ack flag
     except:
         continue
+
+
+    sr = socket.inet_ntoa(dat.src)
+    print(sr)
 
     #parses ack flag
     flags = dat.tcp.flags
@@ -101,12 +106,14 @@ for timestamp, buf in pcap:
 
         currtime = timestamp - startime
         ackarr[int(currtime)] = float(ackcount) /count
-        #print(currtime, float(ackcount), count)
+        print(currtime, float(ackcount), count)
         retransarr[int(currtime)] = float(seqcount) /count
 
         time0 = timestamp
         count = 0
 
+
+eth1.pprint()
 
 ackdatarr = []
 times = []
