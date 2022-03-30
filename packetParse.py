@@ -3,8 +3,9 @@ import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 import socket
+h_name = socket.gethostname()
+myIP = socket.gethostbyname(h_name)
 
-#CorbettinClass.pcap
 
 f = open(sys.argv[1], 'rb')
 pcap = dpkt.pcap.Reader(f)
@@ -14,13 +15,18 @@ ackarr = {}
 
 retrans = {}
 retransarr = {}
+ips = {}
 
 count = 1
 timecount = 0
 first = True
+findIp = True
 time0 = 0
 startime = 0
 window = 1
+max = 0
+testip = ''
+#c = 0
 
 for timestamp, buf in pcap:
     #gets initial time stamp
@@ -28,6 +34,8 @@ for timestamp, buf in pcap:
         time0 = timestamp
         startime = time0
         first = False
+    
+    
 
     #parses data out of packets
     eth1 = dpkt.ethernet.Ethernet(buf)
@@ -40,9 +48,39 @@ for timestamp, buf in pcap:
     except:
         continue
 
+    vectime = timestamp - time0
+    count += 1
+    
+    if findIp:
+        
+        if dat.src in ips:
+            ips[dat.src] += 1
+        else:
+            ips[dat.src] = 1
+        
+        if dat.dst in ips:
+            ips[dat.dst] += 1
+        else:
+            ips[dat.dst] = 1
+        
+        if count > 150:
+            findIp = False
+            
+            for ip in ips:
+                
+                if ips[ip] > max and socket.inet_ntoa(ip) != myIP:
+                    max = ips[ip]
+                    testip = ip
+            
+            
+        
+        continue
 
-    sr = socket.inet_ntoa(dat.src)
-    print(sr)
+
+    if dat.dst != testip and dat.src != testip:
+        #c += 1
+        #print(c)
+        continue
 
     #parses ack flag
     flags = dat.tcp.flags
@@ -51,8 +89,10 @@ for timestamp, buf in pcap:
         continue
 
     #gets time since reset time
-    vectime = timestamp - time0
-    count += 1
+    
+
+    
+    
     
     #continues if FIN ack because ack num repeated
 
@@ -106,14 +146,12 @@ for timestamp, buf in pcap:
 
         currtime = timestamp - startime
         ackarr[int(currtime)] = float(ackcount) /count
-        print(currtime, float(ackcount), count)
+        #print(currtime, float(ackcount), count)
         retransarr[int(currtime)] = float(seqcount) /count
 
         time0 = timestamp
         count = 0
 
-
-eth1.pprint()
 
 ackdatarr = []
 times = []
@@ -129,7 +167,4 @@ df = pd.DataFrame(d)
 df.plot(x='time', y = 'dup ack %', kind='scatter')
 plt.title(f'{sys.argv[1]} dup ack percentage')
 plt.show()
-
-
-    
-
+#eth1.pprint()
