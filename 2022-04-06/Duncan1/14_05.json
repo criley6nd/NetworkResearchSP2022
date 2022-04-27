@@ -1,0 +1,147 @@
+{
+    "Current Connection": {
+        "RSSI": -56.0,
+        "Signal": 88,
+        "Band": "5 GHz",
+        "Channel": "104",
+        "Utilization": "11 (4 %)",
+        "SSID": "eduroam",
+        "BSSID": "4c:a6:4d:7d:d9:af",
+        "Receive rate (Mbps)": "173.3",
+        "Transmit rate (Mbps)": "173.3"
+    },
+    "All Connections": {
+        "ND-guest": {
+            "2c:57:41:8f:94:ae": {
+                "RSSI": -93.0,
+                "Signal": 14,
+                "Band": "5 GHz",
+                "Channel": "40",
+                "Utilization": "5 (1 %)"
+            },
+            "f4:db:e6:b6:ef:c1": {
+                "RSSI": -81.0,
+                "Signal": 38,
+                "Band": "2.4 GHz",
+                "Channel": "1",
+                "Utilization": "2 (0 %)"
+            },
+            "f4:db:e6:b1:fc:81": {
+                "RSSI": -85.5,
+                "Signal": 29,
+                "Band": "2.4 GHz",
+                "Channel": "11",
+                "Utilization": "7 (2 %)"
+            },
+            "4c:a6:4d:7d:e6:ee": {
+                "RSSI": -85.5,
+                "Signal": 29,
+                "Band": "5 GHz",
+                "Channel": "136",
+                "Utilization": "25 (9 %)"
+            },
+            "4c:a6:4d:7d:d9:ae": {
+                "RSSI": -57.5,
+                "Signal": 85,
+                "Band": "5 GHz",
+                "Channel": "104",
+                "Utilization": "70 (27 %)"
+            },
+            "4c:a6:4d:7e:ef:4e": {
+                "RSSI": -88.0,
+                "Signal": 24,
+                "Band": "5 GHz",
+                "Channel": "56",
+                "Utilization": "1 (0 %)"
+            },
+            "4c:a6:4d:7d:8a:6e": {
+                "RSSI": -91.0,
+                "Signal": 18,
+                "Band": "5 GHz",
+                "Channel": "48",
+                "Utilization": "1 (0 %)"
+            },
+            "4c:a6:4d:7e:70:2e": {
+                "RSSI": -58.5,
+                "Signal": 83,
+                "Band": "5 GHz",
+                "Channel": "44",
+                "Utilization": "7 (2 %)"
+            }
+        },
+        "eduroam": {
+            "f4:db:e6:b6:ef:c0": {
+                "RSSI": -81.0,
+                "Signal": 38,
+                "Band": "2.4 GHz",
+                "Channel": "1",
+                "Utilization": "2 (0 %)"
+            },
+            "f4:db:e6:b1:fc:80": {
+                "RSSI": -87.0,
+                "Signal": 26,
+                "Band": "2.4 GHz",
+                "Channel": "11",
+                "Utilization": "7 (2 %)"
+            },
+            "4c:a6:4d:7d:e6:ef": {
+                "RSSI": -85.5,
+                "Signal": 29,
+                "Band": "5 GHz",
+                "Channel": "136",
+                "Utilization": "25 (9 %)"
+            },
+            "4c:a6:4d:7d:d9:af": {
+                "RSSI": -56.0,
+                "Signal": 88,
+                "Band": "5 GHz",
+                "Channel": "104",
+                "Utilization": "11 (4 %)",
+                "SSID": "eduroam",
+                "BSSID": "4c:a6:4d:7d:d9:af",
+                "Receive rate (Mbps)": "173.3",
+                "Transmit rate (Mbps)": "173.3"
+            },
+            "4c:a6:4d:7e:ef:4f": {
+                "RSSI": -89.0,
+                "Signal": 22,
+                "Band": "5 GHz",
+                "Channel": "56",
+                "Utilization": "1 (0 %)"
+            },
+            "4c:a6:4d:7d:8a:6f": {
+                "RSSI": -91.0,
+                "Signal": 18,
+                "Band": "5 GHz",
+                "Channel": "48",
+                "Utilization": "1 (0 %)"
+            },
+            "4c:a6:4d:7e:70:2f": {
+                "RSSI": -58.5,
+                "Signal": 83,
+                "Band": "5 GHz",
+                "Channel": "44",
+                "Utilization": "7 (2 %)"
+            },
+            "4c:a6:4d:7e:53:40": {
+                "RSSI": -85.5,
+                "Signal": 29,
+                "Band": "2.4 GHz",
+                "Channel": "6",
+                "Utilization": "5 (1 %)"
+            }
+        },
+        "": {
+            "86:ea:ed:c3:1f:82": {
+                "RSSI": -85.5,
+                "Signal": 29,
+                "Band": "2.4 GHz",
+                "Channel": "11"
+            }
+        }
+    },
+    "coords": {
+        "Lat": 41.6980646577522,
+        "Lng": -86.2431132880986
+    }
+}
