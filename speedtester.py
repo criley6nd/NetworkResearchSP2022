@@ -44,6 +44,7 @@ if __name__ == '__main__':
 	print(f'\x1b[Kdownload speed is {tests / speeds} mb/s')
 	p.join()
 	packetParse(dirname, 'pshark.pcap')
+	os.remove('pshark.pcap')
 	
 
 

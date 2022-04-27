@@ -197,3 +197,4 @@ def packetParse(dir, pcapname):
     plt.title('dup ack percentage')
     plt.show()
     df.to_json(path_or_buf=(dir+'\\dupAcks.json'))
+    f.close()
