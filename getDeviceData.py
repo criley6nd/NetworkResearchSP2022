@@ -91,9 +91,10 @@ def getDeviceData(dt, dirname):
 
     
 
-
+    path = os.getcwd()
+    coordPath = path + '\\coords.ps1'
     #gets coordinates
-    results = subprocess.check_output(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe','C:\\Users\\riley\\Coding\\speedtests\\coords.ps1'],).decode()
+    results = subprocess.check_output(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe',coordPath],).decode()
 
     output = results.split('\n')
     for thing in output:
@@ -125,12 +126,3 @@ def getDeviceData(dt, dirname):
         f.write(json.dumps(jsonDump, sort_keys=False, indent=4))
     
     return heatCount, [float(lat), float(lng)]
-
-results = subprocess.check_output(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe','C:\\Users\\riley\\Coding\\NetworkResearchSP2022\\coords.ps1'],).decode()
-
-output = results.split('\n')
-for thing in output:
-    if int(thing[0]):
-        print(1)
-print(output)
-

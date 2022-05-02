@@ -33,7 +33,7 @@ if __name__ == '__main__':
 	addresses, coords = getDeviceData(dt, dirname)
 	p = Process(target=f, args=())
 	p.start()
-	speeds = 2
+	speeds = 5
 	tests = 0
 	f = open(dirname+'\\speeds.txt', 'w')
 	for i in range(0,speeds):
@@ -52,7 +52,6 @@ if __name__ == '__main__':
 	df2 = pd.DataFrame({'dups':dups,'speed':avgSpeed,'addrs':addresses,'coords':[coords]})
 	df = pd.concat([df, df2])
 	df.reset_index(inplace=True, drop=True)
-	print(df)
 	df.to_json('heat_map_data.json')
 	
 
