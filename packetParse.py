@@ -181,8 +181,12 @@ def packetParse(dir, pcapname):
     #splits ackarr into times and data, which can be more easily graphed
     ackdatarr = []
     times = []
+    count = 0
+    dups = 0
     for i in range(1,int(currtime)):
         if i in ackarr:
+            count += 1
+            dups += ackarr[i]
             if ackarr[i] != 0:
                 ackdatarr.append(ackarr[i])
                 times.append(i)
@@ -198,3 +202,4 @@ def packetParse(dir, pcapname):
     plt.show()
     df.to_json(path_or_buf=(dir+'\\dupAcks.json'))
     f.close()
+    return (dups/count)

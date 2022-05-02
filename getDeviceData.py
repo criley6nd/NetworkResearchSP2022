@@ -104,10 +104,13 @@ def getDeviceData(dt, dirname):
 
     jsonDump['coords'] = {'Lat': float(lat), 'Lng': float(lng)}
     print('Available connections:')
+    heatCount = 0
     for key in jsonDump['All Connections']:
         count = 0
         for addr in ssids[key]:
-            count+=1
+            count += 1
+            if key == currConnection['SSID']:
+                heatCount+=1
         print(' ',key,' has ', count, ' physical addresses visable')
     
     print('\nYou are connected to ',currConnection['SSID'])
@@ -121,6 +124,6 @@ def getDeviceData(dt, dirname):
     with open(dirname+title, 'w') as f:
         f.write(json.dumps(jsonDump, sort_keys=False, indent=4))
     
-    return count, (float(lat), float(lng))
+    return heatCount, [float(lat), float(lng)]
 
 

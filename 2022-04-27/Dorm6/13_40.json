@@ -1,0 +1,32 @@
+{
+    "Current Connection": {
+        "RSSI": -54.5,
+        "Signal": 91,
+        "Band": "5 GHz",
+        "Channel": "104",
+        "Utilization": "2 (0 %)",
+        "SSID": "eduroam",
+        "BSSID": "4c:a6:4d:7d:d9:af",
+        "Receive rate (Mbps)": "173.3",
+        "Transmit rate (Mbps)": "173.3"
+    },
+    "All Connections": {
+        "eduroam": {
+            "4c:a6:4d:7d:d9:af": {
+                "RSSI": -54.5,
+                "Signal": 91,
+                "Band": "5 GHz",
+                "Channel": "104",
+                "Utilization": "2 (0 %)",
+                "SSID": "eduroam",
+                "BSSID": "4c:a6:4d:7d:d9:af",
+                "Receive rate (Mbps)": "173.3",
+                "Transmit rate (Mbps)": "173.3"
+            }
+        }
+    },
+    "coords": {
+        "Lat": 41.6980428069251,
+        "Lng": -86.2431618962899
+    }
+}

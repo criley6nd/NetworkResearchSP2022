@@ -14,6 +14,7 @@ from multiprocessing import Process
 from getDeviceData import getDeviceData
 import subprocess
 from packetParse import packetParse
+import pandas as pd
 
 def f():
 	#os.system("tshark -w pshark.pcap -a duration:20 -i Wi-Fi -F pcap")
@@ -29,10 +30,10 @@ if __name__ == '__main__':
 	dirname = path + '\\' + date + '\\' + sys.argv[1]
 	if not os.path.exists(dirname):
 		os.makedirs(dirname)
-	getDeviceData(dt, dirname)
+	addresses, coords = getDeviceData(dt, dirname)
 	p = Process(target=f, args=())
 	p.start()
-	speeds = 5
+	speeds = 2
 	tests = 0
 	f = open(dirname+'\\speeds.txt', 'w')
 	for i in range(0,speeds):
@@ -41,10 +42,18 @@ if __name__ == '__main__':
 		dspeed = int(st.download()/1000000)
 		tests += dspeed
 		f.write(str(dspeed) + '\n')
-	print(f'\x1b[Kdownload speed is {tests / speeds} mb/s')
+	avgSpeed = tests / speeds
+	print(f'\x1b[Kdownload speed is {avgSpeed} mb/s')
 	p.join()
-	packetParse(dirname, 'pshark.pcap')
+	dups = packetParse(dirname, 'pshark.pcap')
 	os.remove('pshark.pcap')
+	df = pd.read_json('heat_map_data.json')
+	data = [[dups, avgSpeed, addresses, coords]]
+	df2 = pd.DataFrame({'dups':dups,'speed':avgSpeed,'addrs':addresses,'coords':[coords]})
+	df = pd.concat([df, df2])
+	df.reset_index(inplace=True, drop=True)
+	print(df)
+	df.to_json('heat_map_data.json')
 	
 
 
