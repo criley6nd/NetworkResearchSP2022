@@ -5,14 +5,16 @@ import json
 from datetime import datetime
 
 def getDeviceData(dt, dirname):   
-    #os.system('netsh wlan show interfaces >> interface.txt')
-    #fp = open('interface.txt')
+    #runs a process to get information about the current network connection
     results = subprocess.check_output(['netsh', 'wlan', 'show', 'interfaces']).decode()
 
     output = results.split('\n')
     currConnection = {}
     data = {}
 
+    #parses the data and gets various categories
+    #more categorires can be added to this section in the future
+    #if more data is required as not all are parsed out
     for line in output:
         line = line.strip()
         key = line.split(':')
@@ -37,11 +39,12 @@ def getDeviceData(dt, dirname):
                 data[key[0]] = key[1]
 
 
-
+    #runs a process to see available networks and physical connections
     results = subprocess.check_output(['netsh', 'wlan', 'show', 'networks', 'mode=bssid']).decode()
-
     output = results.split('\n')
 
+    #parses data from all available networks command\
+    #separates data by SSID and then by BSSID under the ssid
     linenum = 0
     currid = ''
     processbid = False
@@ -63,6 +66,10 @@ def getDeviceData(dt, dirname):
             continue
         if not processbid:
             continue
+        #Can add sections to here to parse more data from each BSSID
+        #
+        #
+        #
         if 'Signal' in line:
             signal = line.split(':')[1].strip()[:-1]
             signal = int(signal)
@@ -79,7 +86,7 @@ def getDeviceData(dt, dirname):
             channel = line.split(':')[1].strip()
             ssids[currid][bid]['Utilization'] = channel
 
-
+    #adds data to the current network connection section of the json file
     currConnection = ssids[data['SSID']][data['BSSID']]
     currConnection['SSID'] = data['SSID']
     currConnection['BSSID'] = data['BSSID']
@@ -90,12 +97,14 @@ def getDeviceData(dt, dirname):
 
 
     
-
+    #sets path for a powershell script that gets coordinates
+    #must have coords.ps1 in same directory for this line to work
+    #also must have powershell in the same spot
     path = os.getcwd()
     coordPath = path + '\\coords.ps1'
-    #gets coordinates
     results = subprocess.check_output(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe',coordPath],).decode()
 
+    #parses out the coordinates from the results of the script
     output = results.split('\n')
     for thing in output:
         if len(thing) > 0:
@@ -103,7 +112,11 @@ def getDeviceData(dt, dirname):
                 latlng = thing.strip()
                 lat, lng = latlng.split()
 
+    #adds coordinates to the dataframe for the json dump
     jsonDump['coords'] = {'Lat': float(lat), 'Lng': float(lng)}
+
+    #prints a summary of the data including number of available connections and iformation about
+    #the current connection
     print('Available connections:')
     heatCount = 0
     for key in jsonDump['All Connections']:
@@ -118,6 +131,7 @@ def getDeviceData(dt, dirname):
     print(' Physical address is ',currConnection['BSSID'])
     print(' Signal strength is ', currConnection['Signal'],'%\n')
 
+    #Writes dataframe as a json file to the directory previously created
     time = dt[1][:5]
     time = time.split(':')
     time = '_'.join(time)
@@ -125,4 +139,6 @@ def getDeviceData(dt, dirname):
     with open(dirname+title, 'w') as f:
         f.write(json.dumps(jsonDump, sort_keys=False, indent=4))
     
+    #-returns the number of availble connections on the current network
+    #and the coordinates where the test was run
     return heatCount, [float(lat), float(lng)]

@@ -1,0 +1,65 @@
+{
+    "Current Connection": {
+        "RSSI": -58.0,
+        "Signal": 84,
+        "Channel": "104",
+        "SSID": "eduroam",
+        "BSSID": "4c:a6:4d:7d:d9:af",
+        "Receive rate (Mbps)": "173.3",
+        "Transmit rate (Mbps)": "173.3"
+    },
+    "All Connections": {
+        "ND-guest": {
+            "4c:a6:4d:7d:8a:61": {
+                "RSSI": -82.5,
+                "Signal": 35,
+                "Channel": "1"
+            },
+            "4c:a6:4d:7e:70:2e": {
+                "RSSI": -69.0,
+                "Signal": 62,
+                "Channel": "44"
+            },
+            "4c:a6:4d:7d:d9:ae": {
+                "RSSI": -58.5,
+                "Signal": 83,
+                "Channel": "104"
+            },
+            "4c:a6:4d:7d:d9:a1": {
+                "RSSI": -57.5,
+                "Signal": 85,
+                "Channel": "6"
+            }
+        },
+        "eduroam": {
+            "4c:a6:4d:7d:8a:60": {
+                "RSSI": -81.0,
+                "Signal": 38,
+                "Channel": "1"
+            },
+            "4c:a6:4d:7e:70:2f": {
+                "RSSI": -70.0,
+                "Signal": 60,
+                "Channel": "44"
+            },
+            "4c:a6:4d:7d:d9:a0": {
+                "RSSI": -57.5,
+                "Signal": 85,
+                "Channel": "6"
+            },
+            "4c:a6:4d:7d:d9:af": {
+                "RSSI": -58.0,
+                "Signal": 84,
+                "Channel": "104",
+                "SSID": "eduroam",
+                "BSSID": "4c:a6:4d:7d:d9:af",
+                "Receive rate (Mbps)": "173.3",
+                "Transmit rate (Mbps)": "173.3"
+            }
+        }
+    },
+    "coords": {
+        "Lat": 41.6980587928952,
+        "Lng": -86.2431424670976
+    }
+}
